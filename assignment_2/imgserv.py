@@ -21,7 +21,7 @@ while True:
             modifiedNum = "00" + str(myNum)
         elif len(myNum) == 3:
             modifiedNum = "0" + str(myNum)
-        filePath = "images/" + modifiedNum + ".png"
+        filePath = "/Users/skywired/Documents/Class/CS361 Software Engineering/cs361_project/assignment_2/images/" + modifiedNum + ".png"
         print(filePath)
         myFile.write(filePath)
     myFile.close()

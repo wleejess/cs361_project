@@ -1,18 +1,16 @@
-from tkinter import *
-import tkinter as ttk
+import tkinter as tk
 from tkinter import messagebox
 from PIL import Image, ImageTk
-import time, os, sys
+import time
 
-root = Tk()
-frm = ttk.Frame(root)
-frm.grid()
-ttk.Label(frm, text="Flowers for Friends").grid(column=0, row=0)
+myStatus = True
 
-def myUI():
-    myStatus = True
+while myStatus:
+    print("Enter 1 to generate a new image, or 2 to exit.")
+    time.sleep(0.5)
+    option = input('Select your option: \n')
 
-    while myStatus:
+    if option == "1":
         makeRun = open("prng-service.txt", "w")
         makeRun.write("run")
         makeRun.close()
@@ -31,12 +29,8 @@ def myUI():
         pathURL = myFile.read()
         myFile.close()
         print("Your image path URL from the current folder is:", pathURL)
-        myImg = Image.open(pathURL)
-        myImg.show()
+
+    elif option == "2":
         myStatus = False
-
-ttk.Button(frm, text="Pick a new flower", command=myUI).grid(column=0, row=2)
-ttk.Button(frm, text="Exit", command=root.destroy).grid(column=1, row=2)
-
-root.mainloop()
-
+    else:
+        print("Unknown option selected. Please try again.")
