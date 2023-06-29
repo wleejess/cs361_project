@@ -10,20 +10,22 @@ while myStatus:
     if option == "1":
         makeRun = open("prng-service.txt", "w")
         makeRun.write("run")
-        time.sleep(5)
+        makeRun.close()
+        time.sleep(10)
 
         readVal = open("prng-service.txt", "r")
         myNum = readVal.read()
+        readVal.close()
+        print("myNum is", myNum)
         putNum = open("image-service.txt", "w")
         strNum = str(myNum)
         putNum.write(strNum)
+        putNum.close()
         time.sleep(5)
 
         myFile = open("image-service.txt", "r")
         pathURL = myFile.read()
         print("Your image path URL is:", pathURL)
-        myFile.close()
-        makeRun.close()
     elif option == "2":
         myStatus = False
     else:
