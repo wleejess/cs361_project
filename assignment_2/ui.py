@@ -4,7 +4,7 @@ myStatus = True
 
 while myStatus:
     print("Enter 1 to generate a new image, or 2 to exit.")
-    time.sleep(1)
+    time.sleep(0.5)
     option = input('Select your option: \n')
 
     if option == "1":
@@ -16,7 +16,6 @@ while myStatus:
         readVal = open("prng-service.txt", "r")
         myNum = readVal.read()
         readVal.close()
-        print("myNum is", myNum)
         putNum = open("image-service.txt", "w")
         strNum = str(myNum)
         putNum.write(strNum)
@@ -25,7 +24,9 @@ while myStatus:
 
         myFile = open("image-service.txt", "r")
         pathURL = myFile.read()
-        print("Your image path URL is:", pathURL)
+        myFile.close()
+        print("Your image path URL from the current folder is:", pathURL)
+
     elif option == "2":
         myStatus = False
     else:
