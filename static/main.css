@@ -1,0 +1,85 @@
+/*  ===== MOBILE styles (reside at the top and are inherited by all devices) ===== */
+/*  ===== See tablet, desktop, and print @media queries at the bottom. */
+
+/*   ----- Imports  -----  */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&family=Source+Sans+3:wght@300&display=swap');
+/*   ----- Variables  -----  */
+:root {
+  --accent:#616266;
+  --main: #b0c4d0;
+  --light_pink: #e7dfdd;
+  --lighter_pink: #f7efec;
+  --dark_pink: #d9c2ba;
+}
+
+/*  ----- Viewport ----- elements inherited by all remaining elements ----- */
+body {       /* Can alternatively define in html {} or :root {} */
+  font-family: "Source Sans 3", sans-serif;
+  margin:10px;
+  padding:10px;
+  background: var(--main);
+  max-width: fit-content;
+}
+
+/*  ----- Page layout blocks -----  */
+header, h1{
+  font-family: "Josefin Sans", sans-serif;
+  position: absolute;
+  color: white;
+  top: 20px;
+  right: 40px;
+  justify-content: right;
+}
+
+main {
+  font-family: "Source Sans 3", sans-serif;
+  color: white;
+  padding: auto;
+  margin: auto;
+  position: absolute;
+  top: 100px;
+  left: 20px;
+}
+
+h2, h3, article {
+    font-family: "Source Sans 3", sans-serif;
+    color: white;
+    margin: 10px;
+    padding: 10px;
+}
+
+/*  ----- Navigation ----- Override text links for navigation only.  */
+nav {
+  color: #323c5b;
+  font-family: "Source Sans 3", sans-serif;
+  text-transform: capitalize;
+  position: absolute;
+  top: 120px;
+  right: 20px;
+  padding: auto;
+}
+
+
+/*  -----  Typography  ----- */
+p {
+  font-size: small;
+  font-weight: lighter;
+  padding: 10px;
+  margin: 10px;
+}
+
+ol, ul, dl {
+  font-size: small;
+  font-weight: lighter;
+  color: var(--dark_purple);
+  padding: 10px;
+  margin: 10px;
+}
+
+dt {
+  font-weight: bold;
+}
+
+dd {
+  font-weight: lighter;
+}
