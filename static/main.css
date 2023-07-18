@@ -85,3 +85,60 @@ body, p, h2, h3 {
   filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
 }
+
+/* Gallery Styling */
+.gallery-body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+}
+
+.screenshot-wrapper {
+  border: 2px solid lightgray;
+  border-radius: 0.5rem;
+  padding: 1rem 1rem 0 1rem;
+  overflow: hidden;
+  display: flex;
+  flex-grow: 1;
+}
+
+.screenshot-wrapper .screenshot-container {
+  margin: 0;
+  padding: 0 0 1rem 0;
+  display: flex;
+  gap: 2rem;
+  height: 12rem;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  list-style-type: none;
+  scroll-snap-type: x proximity;
+}
+
+.screenshot-wrapper .screenshot {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 100%;
+  scroll-snap-align: center;
+}
+
+.screenshot-wrapper .image-container {
+  height: 100%;
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.1) 0px 2px 4px -2px;
+}
+
+.screenshot-wrapper img {
+  height: 100%;
+  border: 1px solid lightgray;
+  border-radius: 0.5rem;
+  aspect-ratio: 3/4;
+}
+
+.screenshot-wrapper button {
+  position: absolute;
+  right: 0.4rem;
+  top: 0.4rem;
+}
