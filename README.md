@@ -14,3 +14,5 @@ Overview
 - Browse closet, filter by metadata
 
 Project Plan: Currently using Notion and Asana to manage the project plan. Will include links to each page in a future update.
+
+Hosting on OSU's server (flip1, flip2, or flip3) using gunicorn.
