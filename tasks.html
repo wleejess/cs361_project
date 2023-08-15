@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <title>Style.TBD</title>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&family=Source+Sans+3:wght@300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+        <style>
+        header,h1 {font-family: "Josefin Sans", sans-serif}
+        body, p, h2, h3 {font-family: "Source Sans 3", sans-serif}
+        </style>
+    </head>
+
+<div class="w3-content" style="max-width:1200px">
+    <header class="w3-panel w3-center" style="padding:128px 72px">
+        <h1>TBD</h1>
+        <h2>To Be Determined</h2>
+    <div class="w3-padding-32">
+        <div class="w3-bar w3-border navbar">
+        <a href="index.html" class="w3-bar-item w3-button w3-light-grey">HOME</a>
+        <a href="about.html" class="w3-bar-item w3-button w3-light-grey">ABOUT</a>
+        <a href="tasks.html" class="w3-bar-item w3-button">TASKS</a>
+        </div>
+    </div>
+    <p class="tagline"><i>your clean & simple, task management system.</i></p>
+    </header>
+</div>
+<body>
+    <div class="w3-content" style="max-width:1200px">
+        <div class="w3-content" style="max-width:1200px">
+    <form id="taskForm">
+        <h4>Task Manager</h4>
+        <input type="text" id="title" placeholder="Action Item" required>
+        <input type="text" id="description" placeholder="Description" required>
+        <input type="date" id="dueDate" required>        
+        <button type="submit">Add Task!</button>
+    </form>
+
+    <h4>All Tasks</h4>
+    <ul id="taskList"></ul>
+
+    <div id="exportContainer"></div>
+
+    <h4>High Priority Tasks</h4>
+    <ul id="reminders"></ul>
+
+    <script>
+        const taskList = document.getElementById('taskList');
+        const taskForm = document.getElementById('taskForm');
+        let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+        function convertExport(tasks) {
+            const convertedTasks = {};
+
+            tasks.forEach((task) => {
+                const { title, dueDate } = task;
+
+                if (!convertedTasks[dueDate]) {
+                    convertedTasks[dueDate] = [];
+                }
+
+                convertedTasks[dueDate].push(title);
+            });
+
+            // Update deadlines.json file
+            const jsonString = JSON.stringify(convertedTasks, null, 4);
+            const blob = new Blob([jsonString], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+
+            // Create and configure the export link
+            const exportLink = document.createElement('a');
+            exportLink.href = url;
+            exportLink.download = 'deadlines.json';
+            exportLink.textContent = 'Download Deadlines JSON';
+
+            // Clear previous content and append the export link
+            exportContainer.innerHTML = '';
+            exportContainer.appendChild(exportLink);
+
+            updateHighPriorityList();
+        }
+
+        taskForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            addTask();
+        });
+
+        function addTask() {
+            const title = document.getElementById('title').value;
+            const description = document.getElementById('description').value;
+            const dueDate = document.getElementById('dueDate').value;
+
+            const task = { title, description, dueDate };
+            tasks.push(task);
+            saveTasks();
+
+            updateTaskList();
+            taskForm.reset();
+        }
+
+        function updateTaskList() {
+            taskList.innerHTML = '';
+
+            for (let i=0; i < tasks.length; i++) {
+                const taskItem = document.createElement('li');
+                taskItem.innerHTML = 
+                `${tasks[i].dueDate} - <strong>${tasks[i].title}</strong> - ${tasks[i].description}
+                <button onClick="deleteTask(${i})">Remove</button>`;
+                taskList.appendChild(taskItem);
+            }
+        }
+
+        function deleteTask(index) {
+            tasks.splice(index, 1);
+            updateTaskList();
+        }
+
+        function saveTasks() {
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+
+            convertExport(tasks);
+        }
+
+        updateTaskList();
+
+    </script>
+    </div>
+    </div>
+    
+    <footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-large"> 
+        <p>Oregon State University - CS361: Jessica Lee</p>
+    </footer>
+</body>
+</html>
