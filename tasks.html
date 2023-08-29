@@ -48,9 +48,6 @@
 
     <div id="exportContainer"></div>
 
-    <h4>High Priority Tasks</h4>
-    <ul id="reminders"></ul>
-
     <script>
         const taskList = document.getElementById('taskList');
         const taskForm = document.getElementById('taskForm');
@@ -78,18 +75,21 @@
             const exportLink = document.createElement('a');
             exportLink.href = url;
             exportLink.download = 'deadlines.json';
-            exportLink.textContent = 'Download Deadlines JSON';
+            exportLink.textContent = 'Download tasks as JSON for easy interface with other applications.';
 
             // Clear previous content and append the export link
             exportContainer.innerHTML = '';
             exportContainer.appendChild(exportLink);
-
-            updateHighPriorityList();
         }
 
         taskForm.addEventListener('submit', function (event) {
             event.preventDefault();
             addTask();
+        });
+
+        const prioritizeButton = document.getElementById('prioritizeButton');
+        prioritizeButton.addEventListener('click', function (event) {
+            event.preventDefault();
         });
 
         function addTask() {
@@ -118,8 +118,11 @@
         }
 
         function deleteTask(index) {
+            const taskTitle = tasks[index].title;
             tasks.splice(index, 1);
+            localStorage.removeItem(taskTitle);
             updateTaskList();
+            saveTasks();
         }
 
         function saveTasks() {
