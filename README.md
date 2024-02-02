@@ -1,5 +1,6 @@
-# cs361_project
-A repository for my CS361 course at Oregon State University
+## Oregon State University: CS361 Project
+A repository for my class project.
+Uses: HTML, CSS
 
 ### Project Name: To Be Determined (TBD)
 A simple task management system.
